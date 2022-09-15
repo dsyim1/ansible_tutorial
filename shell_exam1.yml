@@ -1,0 +1,28 @@
+---
+  - name: Shell Examples
+    hosts: all
+    tasks:
+
+    - name: Check Data with Shell command
+      shell:
+        "date"
+      register: datecmd
+      tags: datecmd
+
+    - debug: msg="{{datecmd.stdout}}"    
+
+  - name: Shell Examples with Pipe and redirection
+    hosts: all
+    tasks:
+
+    - name: Dir list and write to file
+      shell:
+         " ls -lrt /home/yimds |awk '{print $9}'|sed '/^$/d' > /tmp/dirlist.txt "
+      register: lsout
+      tags: lsout
+
+    - name: Display the file
+      shell: cat /tmp/dirlist.txt
+      register: displaylist
+      
+    - debug: msg="{{displaylist.stdout_lines}}"    

@@ -1,0 +1,10 @@
+---
+
+  - name: ensure playbook
+    hosts: centos
+    become: no
+    tasks:
+      - name: ensure apache is running
+        service:
+          name: httpd
+          state: started
