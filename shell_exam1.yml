@@ -1,6 +1,7 @@
 ---
   - name: Shell Examples
     hosts: all
+    become: false
     tasks:
 
     - name: Check Data with Shell command
@@ -13,6 +14,8 @@
 
   - name: Shell Examples with Pipe and redirection
     hosts: all
+    become: true
+    become_user: yimds
     tasks:
 
     - name: Dir list and write to file
